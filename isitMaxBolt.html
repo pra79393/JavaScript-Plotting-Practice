@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<title>Will it be a maxwell boltzmann?</title>
+<style>
+nav 
+{
+    float: left;
+    width: 50%;
+    padding: 20px;
+}
+
+article 
+{
+    float: left;
+    width: 50%;
+}
+</style>
+<body>
+    <script src="RandomBoxMueller.js"></script>
+    <button type="button"
+    onclick="randn_bm(); document.getElementById('dist').innerHTML = dist; document.getElementById('distSQ').innerHTML = distSQ"">Click to show distribution</button>
+    <nav id="dist"></nav>
+    <p id="distSQ"></p>
+</body>
