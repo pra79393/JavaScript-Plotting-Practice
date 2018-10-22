@@ -61,7 +61,7 @@ function addToKT(oldData, newData) //One step of constructing a static Kubo-Toya
     return KT;
 }
 
-function plot(oldData) 
+function upData(oldData) 
 {
     for (i = 0; i < 10; i++)
     {
@@ -73,7 +73,18 @@ function plot(oldData)
             KTnorm[i] = KTdata[i]/log
         }
     }
+}
 
+function upDataLot(oldData)
+{
+    for (i = 0; i < 10; i++)
+    {
+        upData(oldData);
+    }
+}
+
+function plotData(OldData)
+{
     var ctx = document.getElementById("myChart");
     var myChart = new Chart(ctx, 
     {
