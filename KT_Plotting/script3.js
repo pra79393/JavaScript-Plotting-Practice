@@ -1,21 +1,17 @@
 Chart.scaleService.updateScaleDefaults('linear', {
-    ticks: {
+    ticks: 
+    {
         min: -1/3
     }
-    /*{
-        max: 1
-    }*/
 });
 
 // Our labels along the x-axis
-var time = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+var time = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,];
 // For drawing the lines
-var KTdata = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-var KTnorm = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-var polData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+var KTdata = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+var KTnorm = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+var polData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 var log = 0; //a log of how many times the "addToKT" function has been run
-
-
 
 function genP_z(givData, B) //Generates a polarisation function as in P_z for a given value of B
 {
@@ -63,21 +59,18 @@ function addToKT(oldData, newData) //One step of constructing a static Kubo-Toya
 
 function upData(oldData) 
 {
-    for (i = 0; i < 10; i++)
+    var B = randn_bm();
+    polData = genP_z(polData, B);
+    KTdata = addToKT(oldData, polData);
+    for (i = 0; i < KTdata.length; i++)
     {
-        var B = randn_bm();
-        polData = genP_z(polData, B);
-        KTdata = addToKT(oldData, polData);
-        for (i = 0; i < KTdata.length; i++)
-        {
-            KTnorm[i] = KTdata[i]/log
-        }
+        KTnorm[i] = KTdata[i]/log;
     }
 }
 
 function upDataLot(oldData)
-{
-    for (i = 0; i < 10; i++)
+{   
+    for (k = 0; k < 100; k++)
     {
         upData(oldData);
     }
